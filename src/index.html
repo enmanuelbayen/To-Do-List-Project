@@ -2,10 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Webpack tutorial</title>
+    <title>To Do List - Get it done!</title>
 </head>
 <body>
-    <h1>Hello webpack!</h1>
-    <h2 class="puf">buenas ciudadano humilde</h2>
+    <section class="list-container">
+        <div class="subtitle">
+          <h2>Today's To Do</h2>
+          <img class="icon-reload" id="icon-reload-id" alt="reload icon">
+        </div>
+        <form class="add-form">
+            <label for="toDoList-item">          
+                <input class="add-item" name="toDoList-item" type="text" placeholder="Add to your list..." required/>
+            </label>
+          <img id="icon-send-id" class="icon-send" alt="Enter icon">
+        </form>
+        <ul class="list-holder" id="list-holder-id"></ul>
+        <button class="clear-bttn">Clear all completed</button>
+      </section>
 </body>
 </html>
+
