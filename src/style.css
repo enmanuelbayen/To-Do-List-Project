@@ -14,6 +14,10 @@ body {
   height: fit-content;
 }
 
+.hide {
+  display: none;
+}
+
 .pointer {
   cursor: pointer;
 }
@@ -25,7 +29,7 @@ body {
 li {
   list-style: none;
 }
-
+/* -----main section */
 .list-container * {
   background-color: #fff;
 }
@@ -51,6 +55,19 @@ li {
   font-style: italic;
   border: none;
   width: 40vw;
+}
+
+.description {
+  border: none;
+  width: 40vw;
+}
+
+.bgYellow *{
+    background-color: #e0e27600;
+}
+
+.bgYellow {
+  background-color: #f3f97de1;
 }
 
 input[type="text"]:focus {
