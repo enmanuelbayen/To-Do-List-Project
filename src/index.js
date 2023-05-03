@@ -1,5 +1,4 @@
-
-import "./style.css";
+import './style.css';
 import moveImg from './move.png';
 import reloadImg from './reload.png';
 import sendImg from './send.png';
@@ -12,21 +11,21 @@ enter.src = sendImg;
 reload.src = reloadImg;
 
 const listObj = [
-    {
-        descrip: 'Cry in the shower',
-        completed: false,
-        index: 1,
-    },
-    {
-        descrip: 'Look to the horizon for 2h',
-        completed: false,
-        index: 2,
-    },
+  {
+    descrip: 'Cry in the shower',
+    completed: false,
+    index: 1,
+  },
+  {
+    descrip: 'Look to the horizon for 2h',
+    completed: false,
+    index: 2,
+  },
 
 ];
 
 const createList = () => {
- for (let i = 0; i < listObj.length; i += 1) {
+  for (let i = 0; i < listObj.length; i += 1) {
     const lisItem = document.createElement('li');
     lisItem.className = 'list-item flex';
     lisItem.innerHTML = `
@@ -40,7 +39,7 @@ const createList = () => {
     `;
 
     listData.appendChild(lisItem);
- }
+  }
 };
 
 window.onload = createList;
