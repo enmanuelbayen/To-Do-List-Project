@@ -30,9 +30,13 @@ const createList = () => {
     const lisItem = document.createElement('li');
     lisItem.className = 'list-item flex';
     lisItem.innerHTML = `
-    <div class="finished-cap ${listObj[i].completed ? 'completed' : ''}">${listObj[i].completed ? '✓' : ''}</div>
+    <div class="check-descrip flex">
+    <label>
+    <input type="checkbox" name="completed" class="check ${listObj[i].completed ? 'completed' : ''}">
+    </label>
     <p class="description">${listObj[i].descrip}</p>
-    <img src="${moveImg}" alt="move icon" class="icon-move">
+    </div>
+    <img src="${moveImg}" alt="move icon" class="icon-move pointer">
     `;
 
     listData.appendChild(lisItem);
