@@ -10,6 +10,10 @@
   background-color: #d8dadc;
 }
 
+body {
+  height: fit-content;
+}
+
 .pointer {
   cursor: pointer;
 }

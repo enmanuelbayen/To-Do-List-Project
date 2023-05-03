@@ -12,12 +12,12 @@ reload.src = reloadImg;
 
 const listObj = [
   {
-    descrip: 'Cry in the shower',
+    description: 'Cry in the shower',
     completed: false,
     index: 1,
   },
   {
-    descrip: 'Look to the horizon for 2h',
+    description: 'Look to the horizon for 2h',
     completed: false,
     index: 2,
   },
@@ -33,7 +33,7 @@ const createList = () => {
     <label>
     <input type="checkbox" name="completed" class="check ${listObj[i].completed ? 'completed' : ''}">
     </label>
-    <p class="description">${listObj[i].descrip}</p>
+    <p class="description">${listObj[i].description}</p>
     </div>
     <img src="${moveImg}" alt="move icon" class="icon-move pointer">
     `;
