@@ -11,7 +11,7 @@
 }
 
 body {
-  height: fit-content;
+  height: 100%;
 }
 
 .hide {
@@ -29,6 +29,7 @@ body {
 li {
   list-style: none;
 }
+
 /* -----main section */
 .list-container * {
   background-color: #fff;
@@ -62,8 +63,8 @@ li {
   width: 40vw;
 }
 
-.bgYellow *{
-    background-color: #e0e27600;
+.bgYellow * {
+  background-color: #e0e27600;
 }
 
 .bgYellow {

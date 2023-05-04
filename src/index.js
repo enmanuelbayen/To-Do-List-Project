@@ -4,7 +4,6 @@ import reloadImg from './reload.png';
 import sendImg from './send.png';
 import deleteImg from './trashpin.png';
 
-
 const reload = document.querySelector('.icon-reload');
 const enter = document.querySelector('.icon-send');
 
@@ -16,18 +15,18 @@ const listData = document.querySelector('.list-holder');
 const inputItem = document.querySelector('.add-item');
 const sendBttn = document.getElementById('icon-send-id');
 
-let listObj = JSON.parse(localStorage.getItem('data-lis')) || [];
+const listObj = JSON.parse(localStorage.getItem('data-lis')) || [];
 
 const updateDescription = (id, value) => {
-  const index = listObj.findIndex(item => item.id === id);
+  const index = listObj.findIndex((item) => item.id === id);
   if (index >= 0) {
     listObj[index].description = value;
     localStorage.setItem('data-lis', JSON.stringify(listObj));
   }
-}
+};
 
 // append new list to ul
- let createList = () => {
+const createList = () => {
   listData.innerHTML = '';
   for (let i = 0; i < listObj.length; i += 1) {
     const lisItem = document.createElement('li');
@@ -45,35 +44,35 @@ const updateDescription = (id, value) => {
     <img src="${deleteImg}" alt="trash pin icon" class="icon-delete pointer hide" id="swapHide-icon-${i}">    
     `;
 
-      listData.appendChild(lisItem);
+    listData.appendChild(lisItem);
 
-        // interaccion while clicking the input item
+    // interaccion while clicking the input item
 
-      const edit = document.querySelector(`label[for="descrip-id${listObj[i].id}"]`);
-      const removeBttn = document.getElementById(`swapHide-icon-${i}`);
-      const hideIcon = document.getElementById(`swapIcon${listObj[i].id}-${i}`);
-      const reverseEdit = document.getElementById(`descrip-id${listObj[i].id}`);
-      
-      edit.addEventListener('click', () => {
-        lisItem.classList.add('bgYellow');
-        removeBttn.classList.remove('hide');
-        hideIcon.classList.add('hide');
-     });
+    const edit = document.querySelector(`label[for="descrip-id${listObj[i].id}"]`);
+    const removeBttn = document.getElementById(`swapHide-icon-${i}`);
+    const hideIcon = document.getElementById(`swapIcon${listObj[i].id}-${i}`);
+    const reverseEdit = document.getElementById(`descrip-id${listObj[i].id}`);
 
-     reverseEdit.addEventListener('blur', (event) => {
+    edit.addEventListener('click', () => {
+      lisItem.classList.add('bgYellow');
+      removeBttn.classList.remove('hide');
+      hideIcon.classList.add('hide');
+    });
+
+    reverseEdit.addEventListener('blur', (event) => {
       const input = event.target;
-      const id = parseInt(input.id.replace('descrip-id', ''));
+      const id = parseInt(input.id.replace('descrip-id', ''), 10);
       const value = input.value.trim();
       updateDescription(id, value);
       setTimeout(() => {
         lisItem.classList.remove('bgYellow');
-         removeBttn.classList.add('hide');
-         hideIcon.classList.remove('hide');
-         localStorage.setItem('data-lis', JSON.stringify(listObj));
-    }, 100);
-  });
-    // remove 
-    removeBttn.addEventListener('click', (event) =>{
+        removeBttn.classList.add('hide');
+        hideIcon.classList.remove('hide');
+        localStorage.setItem('data-lis', JSON.stringify(listObj));
+      }, 100);
+    });
+    // remove
+    removeBttn.addEventListener('click', (event) => {
       const button = event.target;
       if (button.classList.contains('icon-delete')) {
         const lisItem = button.parentElement;
@@ -82,7 +81,7 @@ const updateDescription = (id, value) => {
         localStorage.setItem('data-lis', JSON.stringify(listObj));
         listData.removeChild(lisItem);
         // update remaining items
-        for (let i = indexToRemove; i < listObj.length; i++) {
+        for (let i = indexToRemove; i < listObj.length; i += 1) {
           listObj[i].id = i + 1;
         }
         localStorage.setItem('data-lis', JSON.stringify(listObj));
@@ -93,14 +92,14 @@ const updateDescription = (id, value) => {
 };
 
 // add
- sendBttn.addEventListener('click', () => {
-  let newObj = {
-    id: listObj.length +1,
+sendBttn.addEventListener('click', () => {
+  const newObj = {
+    id: listObj.length + 1,
     completed: false,
     description: inputItem.value,
-  }
+  };
   listObj.push(newObj);
-  localStorage.setItem('data-lis', JSON.stringify(listObj))
+  localStorage.setItem('data-lis', JSON.stringify(listObj));
   inputItem.value = '';
   createList();
 });
