@@ -81,7 +81,12 @@ const updateDescription = (id, value) => {
         listObj.splice(indexToRemove, 1);
         localStorage.setItem('data-lis', JSON.stringify(listObj));
         listData.removeChild(lisItem);
-        
+        // update remaining items
+        for (let i = indexToRemove; i < listObj.length; i++) {
+          listObj[i].id = i + 1;
+        }
+        localStorage.setItem('data-lis', JSON.stringify(listObj));
+        createList();
       }
     });
   }
