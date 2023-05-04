@@ -75,14 +75,13 @@ const createList = () => {
     const checkboxes = Array.from(document.querySelectorAll('.check'));
 
     checkboxes.forEach((checkbox) => {
-        checkbox.addEventListener('click', () => {
-          const id = checkbox.dataset.id;
-          Checked(id);
-          saveData();
-          createList();
-        });
+      checkbox.addEventListener('click', () => {
+        const { id } = checkbox.dataset;
+        Checked(id - 1);
+        saveData();
+        createList();
       });
-
+    });
   }
 };
 
