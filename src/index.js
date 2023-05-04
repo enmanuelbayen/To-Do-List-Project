@@ -18,6 +18,14 @@ const sendBttn = document.getElementById('icon-send-id');
 
 let listObj = JSON.parse(localStorage.getItem('data-lis')) || [];
 
+const updateDescription = (id, value) => {
+  const index = listObj.findIndex(item => item.id === id);
+  if (index >= 0) {
+    listObj[index].description = value;
+    localStorage.setItem('data-lis', JSON.stringify(listObj));
+  }
+}
+
 // append new list to ul
  let createList = () => {
   listData.innerHTML = '';
@@ -52,7 +60,11 @@ let listObj = JSON.parse(localStorage.getItem('data-lis')) || [];
         hideIcon.classList.add('hide');
      });
 
-     reverseEdit.addEventListener('blur', () => {
+     reverseEdit.addEventListener('blur', (event) => {
+      const input = event.target;
+      const id = parseInt(input.id.replace('descrip-id', ''));
+      const value = input.value.trim();
+      updateDescription(id, value);
       setTimeout(() => {
         lisItem.classList.remove('bgYellow');
          removeBttn.classList.add('hide');
