@@ -97,7 +97,7 @@ Use these commands:
 
 ```sh
   cd my-folder
-  git clone git@github.com:enmanuelbayen/Capstone-Web-page.git
+  git clone git@github.com:enmanuelbayen/To-Do-List-Project.git
 ```
 
 ### Install
