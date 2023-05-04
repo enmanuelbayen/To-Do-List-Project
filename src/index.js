@@ -11,15 +11,16 @@ const enter = document.querySelector('.icon-send');
 enter.src = sendImg;
 reload.src = reloadImg;
 // functions variables
-const listObj = [];
+
 const listData = document.querySelector('.list-holder');
 const inputItem = document.querySelector('.add-item');
 const sendBttn = document.getElementById('icon-send-id');
 
-
+let listObj = JSON.parse(localStorage.getItem('data-lis')) || [];
 
 // append new list to ul
  let createList = () => {
+  listData.innerHTML = '';
   for (let i = 0; i < listObj.length; i += 1) {
     const lisItem = document.createElement('li');
     lisItem.className = 'list-item flex';
@@ -29,7 +30,7 @@ const sendBttn = document.getElementById('icon-send-id');
         <input type="checkbox" name="completed" class="check ${listObj[i].completed ? 'completed' : ''}">
       </label>
       <label label class="description-label" for="descrip-id${listObj[i].id}">
-      <input type="text" name="action-toDo" class="description" id="descrip-id${listObj[i].id}" value="${listObj[i].description}">
+        <input type="text" name="action-toDo" class="description" id="descrip-id${listObj[i].id}" value="${listObj[i].description}">
       </label>
     </div>
     <img src="${moveImg}" alt="move icon" class="icon-move pointer" id="swapIcon${listObj[i].id}-${i}">
@@ -37,12 +38,14 @@ const sendBttn = document.getElementById('icon-send-id');
     `;
 
       listData.appendChild(lisItem);
+
+        // interaccion while clicking the input item
+
       const edit = document.querySelector(`label[for="descrip-id${listObj[i].id}"]`);
       const removeBttn = document.getElementById(`swapHide-icon-${i}`);
       const hideIcon = document.getElementById(`swapIcon${listObj[i].id}-${i}`);
       const reverseEdit = document.getElementById(`descrip-id${listObj[i].id}`);
       
-  
       edit.addEventListener('click', () => {
         lisItem.classList.add('bgYellow');
         removeBttn.classList.remove('hide');
@@ -50,13 +53,28 @@ const sendBttn = document.getElementById('icon-send-id');
      });
 
      reverseEdit.addEventListener('blur', () => {
-      lisItem.classList.remove('bgYellow');
-       removeBttn.classList.add('hide');
-       hideIcon.classList.remove('hide');
+      setTimeout(() => {
+        lisItem.classList.remove('bgYellow');
+         removeBttn.classList.add('hide');
+         hideIcon.classList.remove('hide');
+         localStorage.setItem('data-lis', JSON.stringify(listObj));
+    }, 100);
+  });
+    // remove 
+    removeBttn.addEventListener('click', (event) =>{
+      const button = event.target;
+      if (button.classList.contains('icon-delete')) {
+        const lisItem = button.parentElement;
+        const indexToRemove = Array.from(listData.children).indexOf(lisItem);
+        listObj.splice(indexToRemove, 1);
+        localStorage.setItem('data-lis', JSON.stringify(listObj));
+        listData.removeChild(lisItem);
+        
+      }
     });
   }
-
 };
+
 // add
  sendBttn.addEventListener('click', () => {
   let newObj = {
@@ -64,23 +82,10 @@ const sendBttn = document.getElementById('icon-send-id');
     completed: false,
     description: inputItem.value,
   }
-  listData.innerHTML = "";
   listObj.push(newObj);
-  createList();
+  localStorage.setItem('data-lis', JSON.stringify(listObj))
   inputItem.value = '';
-
+  createList();
 });
-
-// removeBttn.addEventListener('click', (event) =>{
-//   const button = event.target;
-//   if (button.classList.contains('icon-delete')) {
-//     const lisItem = button.parentElement;
-//     const indexToRemove = Array.from(listData.children).indexOf(lisItem);
-//     listObj.splice(indexToRemove, 1);
-//     listObj.removeChild(lisItem);
-//   }
-// });
-
-
 
 window.onload = createList;
