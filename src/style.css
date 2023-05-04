@@ -92,3 +92,8 @@ input[type="text"]:focus {
   background-color: #c3c6cb;
   width: 100%;
 }
+
+.completed {
+  text-decoration: line-through;
+  color: #636a7275;
+}
