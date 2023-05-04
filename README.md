@@ -73,9 +73,6 @@ Will have future changes in the next days!
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## 🚀 Live Demo <a name="live-demo"></a>
-
-Coming soon..
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
