@@ -2,8 +2,9 @@
 import listObj from './ArrayToDo.js';
 import saveData from './savaDataList.js';
 import updateDescription from './editTodo.js';
-import deleteImg from './trashpin.png';
-import moveImg from './move.png';
+import deleteImg from '../img/trashpin.png';
+import moveImg from '../img/move.png';
+import { Checked } from './checkTask.js';
 
 const listData = document.querySelector('.list-holder');
 
@@ -16,10 +17,10 @@ const createList = () => {
     lisItem.innerHTML = `
     <div class="check-descrip flex">
       <label>
-        <input type="checkbox" name="completed" class="check ${listObj[i].completed ? 'completed' : ''}">
+        <input type="checkbox" name="completed" class="check" ${listObj[i].completed ? 'checked' : ''} data-id="${listObj[i].id}" }>
       </label>
       <label label class="description-label" for="descrip-id${listObj[i].id}">
-        <input type="text" name="action-toDo" class="description" id="descrip-id${listObj[i].id}" value="${listObj[i].description}">
+        <input type="text" name="action-toDo" class="description ${listObj[i].completed ? 'completed' : ''}" id="descrip-id${listObj[i].id}" value="${listObj[i].description}">
       </label>
     </div>
     <img src="${moveImg}" alt="move icon" class="icon-move pointer" id="swapIcon${listObj[i].id}-${i}">
@@ -69,6 +70,17 @@ const createList = () => {
         saveData();
         createList();
       }
+    });
+
+    const checkboxes = Array.from(document.querySelectorAll('.check'));
+
+    checkboxes.forEach((checkbox, idx) => {
+      checkbox.addEventListener('click', () => {
+        // const id = idx;
+        Checked(idx);
+        saveData();
+        createList();
+      });
     });
   }
 };
