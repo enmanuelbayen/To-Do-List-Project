@@ -74,10 +74,10 @@ const createList = () => {
 
     const checkboxes = Array.from(document.querySelectorAll('.check'));
 
-    checkboxes.forEach((checkbox) => {
+    checkboxes.forEach((checkbox, idx) => {
       checkbox.addEventListener('click', () => {
-        const { id } = checkbox.dataset;
-        Checked(id - 1);
+        // const id = idx;
+        Checked(idx);
         saveData();
         createList();
       });
