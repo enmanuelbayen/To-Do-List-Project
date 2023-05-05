@@ -17,7 +17,7 @@ const createList = () => {
     lisItem.innerHTML = `
     <div class="check-descrip flex">
       <label>
-        <input type="checkbox" name="completed" class="check" ${listObj[i].completed ? 'checked' : ''} data-id="${listObj[i].id}" }>
+        <input type="checkbox" name="completed" class="check" ${listObj[i].completed ? 'checked' : ''} data-id="${listObj[i].id}">
       </label>
       <label label class="description-label" for="descrip-id${listObj[i].id}">
         <input type="text" name="action-toDo" class="description ${listObj[i].completed ? 'completed' : ''}" id="descrip-id${listObj[i].id}" value="${listObj[i].description}">

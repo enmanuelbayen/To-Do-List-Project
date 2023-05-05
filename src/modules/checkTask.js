@@ -8,7 +8,7 @@ const Checked = (taskId) => {
     listObj[taskId].completed = false;
   }
   localStorage.setItem('data-lis', JSON.stringify(toDoList));
-// console.log(taskId);
+console.log(taskId);
 };
 
 const deleteComplete = () => {
